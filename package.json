@@ -9,11 +9,14 @@
   "scripts": {
     "lint": "xo",
     "fix": "xo --fix",
-    "test": "nyc ava"
+    "test": "xo && nyc ava"
   },
   "devDependencies": {
     "ava": "0.25.0",
     "nyc": "11.6.0",
     "xo": "0.20.3"
+  },
+  "xo": {
+    "space": true
   }
 }
