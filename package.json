@@ -5,5 +5,15 @@
   "main": "index.js",
   "repository": "ssh://git@github.com/ringohub/git-origin-parser.git",
   "author": "aoki",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "lint": "xo",
+    "fix": "xo --fix",
+    "test": "nyc ava"
+  },
+  "devDependencies": {
+    "ava": "0.25.0",
+    "nyc": "11.6.0",
+    "xo": "0.20.3"
+  }
 }
