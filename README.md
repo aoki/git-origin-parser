@@ -13,7 +13,7 @@ npm install git-origin-parser
 ## How to Use
 
 ```js
-const parse = require('./src/git-origin-parser');
+const parse = require('git-origin-parser');
 const origin = parse('https://github.com/ringohub.git-origin-parser.git');
 ```
 
