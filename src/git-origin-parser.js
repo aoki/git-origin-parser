@@ -1,6 +1,6 @@
 // @see https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols
 module.exports = gitOrigin => {
-  if (/file:/.test(gitOrigin)) {
+  if (/file:(.*?)\.git/.test(gitOrigin)) {
     const parsedFile = gitOrigin.match(new RegExp('^file://(.+).git'));
     return {
       type: 'file',
@@ -8,7 +8,7 @@ module.exports = gitOrigin => {
     };
   }
 
-  if (/ssh:/.test(gitOrigin)) {
+  if (/ssh:(.*?)\.git/.test(gitOrigin)) {
     const parsedSsh = gitOrigin.match(new RegExp('^ssh://(.+)@(.+?)/(.+).git'));
     const origin = {
       type: 'ssh',
@@ -24,7 +24,7 @@ module.exports = gitOrigin => {
     return origin;
   }
 
-  if (/git:/.test(gitOrigin)) {
+  if (/git:(.*?)\.git/.test(gitOrigin)) {
     const parsedGit = gitOrigin.match(new RegExp('^git://(.+?)/(.+).git'));
     return {
       type: 'git',
@@ -33,7 +33,7 @@ module.exports = gitOrigin => {
     };
   }
 
-  if (/http(s)?:/.test(gitOrigin)) {
+  if (/http(s)?:(.*?)\.git/.test(gitOrigin)) {
     const parsedHttp = gitOrigin.match(new RegExp('^(http(?:s)?)://(.+?)/(.+).git'));
     const originHttp = {
       type: parsedHttp[1],
@@ -47,4 +47,6 @@ module.exports = gitOrigin => {
     }
     return originHttp;
   }
+
+  throw new Error(`No Match Error: ${gitOrigin}`);
 };

@@ -73,3 +73,10 @@ test(`Extract HTTP protocol including org and repo like a "${http}"`, t => {
   };
   t.deepEqual(origin, expected);
 });
+
+const notGitFormat = 'http://github.com/ringohub/foo';
+test(`Get error when give invalid git URL`, t => {
+  t.throws(() => {
+    extract(notGitFormat);
+  }, Error, `No Match Error: ${notGitFormat}`);
+});
