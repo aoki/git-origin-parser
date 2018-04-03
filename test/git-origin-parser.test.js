@@ -37,6 +37,20 @@ test(`Extract SSH protocol including org and repo like a "${ssh2}"`, t => {
   t.deepEqual(origin, expected);
 });
 
+const ssh3 = 'git@github.com:foo/project.git';
+test(`Extract SSH protocol including org and repo like a "${ssh3}"`, t => {
+  const origin = extract(ssh3);
+  const expected = {
+    type: 'ssh',
+    user: 'git',
+    domain: 'github.com',
+    path: 'foo/project',
+    org: 'foo',
+    repo: 'project'
+  };
+  t.deepEqual(origin, expected);
+});
+
 const git = 'git://example.com/example/repo.git';
 test(`Extract Git protocol like a "${git}"`, t => {
   const origin = extract(git);

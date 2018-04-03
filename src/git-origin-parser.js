@@ -8,6 +8,22 @@ module.exports = gitOrigin => {
     };
   }
 
+  if (/(.*?)@(.*?):(.*?)\.git/.test(gitOrigin)) {
+    const parsedSsh = gitOrigin.match(new RegExp('^(.+)@(.+?):(.+?).git'));
+    const origin = {
+      type: 'ssh',
+      user: parsedSsh[1],
+      domain: parsedSsh[2],
+      path: parsedSsh[3]
+    };
+    const paths = parsedSsh[3].split('/');
+    if (paths.length === 2) {
+      origin.org = paths[0];
+      origin.repo = paths[1];
+    }
+    return origin;
+  }
+
   if (/ssh:(.*?)\.git/.test(gitOrigin)) {
     const parsedSsh = gitOrigin.match(new RegExp('^ssh://(.+)@(.+?)/(.+).git'));
     const origin = {
