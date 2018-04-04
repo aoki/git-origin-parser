@@ -1,6 +1,6 @@
 {
   "name": "git-origin-parser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parse git origin to JS object",
   "main": "./src/git-origin-parser.js",
   "repository": "ssh://git@github.com/ringohub/git-origin-parser.git",
